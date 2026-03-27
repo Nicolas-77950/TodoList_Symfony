@@ -1,0 +1,33 @@
+<h1>Task List</h1>  
+<ul>
+    {% for task in tasks %}
+        <li>
+            <a href="{{ path('app_task_toggle', {'id': task.id}) }}">
+                {% if task.isDone %}
+                    <s>{{ task.title }}</s> ✅
+                {% else %}
+                    <strong>{{ task.title }}</strong> ⬜
+                {% endif %}
+            </a>
+
+            (Created at : {{ task.createdAt|date('d/m/Y H:i') }})
+        </li>
+
+        <a href="{{ path('app_task_delete', {'id': task.id}) }}"
+        onClick="return confirm('are you want delete this task ?')">
+        delete
+        </a>
+
+        <a href="{{ path('app_task_edit', {'id': task.id}) }}">
+            edit ✍️
+        </a>
+    {% else %}
+        <li>Aucune tâche pour le moment</li>
+    {% endfor %} 
+    
+</ul>
+
+<a href="{{ path('app_task_create') }}">add new Task</a>
+
+
+    
